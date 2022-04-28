@@ -1,0 +1,940 @@
+<style>
+  .option__atc label {
+    font-size: 14px;
+    margin: 0px;
+    padding: 0px;
+  }
+  .build-your-own-bundle {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 50px 40px;
+    box-sizing: border-box;
+  }
+  .build-your-own-bundle .custom-bundle {
+    display: flex;
+    justify-content: space-between;
+  }
+  .build-your-own-bundle .custom-bundle .options-container {
+    order: 1;
+    width: 68%;
+  }
+  .build-your-own-bundle .custom-bundle .options-container h1 {
+    font-size: 18px;
+    color: #000000;
+    font-style: italic;
+    text-transform: uppercase;
+    padding: 0 12px;
+    font-weight: bold;
+  }
+  a.btn.addToBundle.disabled {
+    cursor: default;
+    pointer-events: none;
+    background-color: gray;
+  }
+  a.btn.addToBundle.disabled:hover{
+    cursor:
+  }
+  @media screen and (max-width: 990px) {
+    .build-your-own-bundle .custom-bundle .options-container h1 {
+      text-align: center;
+    }
+  }
+  .build-your-own-bundle .custom-bundle .options-container .options {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 30px;
+  }
+  .build-your-own-bundle .custom-bundle .options-container .options .option__container {
+    padding: 0 8px 24px;
+    max-width: 205px;
+  }
+  .build-your-own-bundle .custom-bundle .options-container .options .option__container .option {
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
+    text-align: center;
+    padding: 20px 15px;
+    position: relative;
+    border: 1px solid #f3f2f6;
+    padding-top: 220px;
+    transition: all 0.3s;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .build-your-own-bundle .custom-bundle .options-container .options .option__container .option:hover {
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.15);
+    border: 1px solid #00a31b;
+  }
+  .build-your-own-bundle .custom-bundle .options-container .options .option__container .option .best-seller {
+    position: absolute;
+    width: 70px;
+    height: auto;
+    z-index: 99;
+    top: -15px;
+    left: -4px;
+    display: none;
+  }
+  .build-your-own-bundle .custom-bundle .options-container .options .option__container .option img {
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+  }
+  .build-your-own-bundle .custom-bundle .options-container .options .option__container .option h4 {
+    font-size: 15px;
+    margin: 0 auto;
+    color: black;
+    font-weight: bold;
+/*     margin-bottom: 5px; */
+/*     text-transform: uppercase;
+    font-style: italic; */
+  }
+  .build-your-own-bundle .custom-bundle .options-container .options .option__container .option p {
+    font-size: 13px;
+    line-height: 18px;
+    margin: 0 auto;
+    min-height: 35px;
+    margin-bottom: 20px;
+  }
+  .build-your-own-bundle .custom-bundle .options-container .options .option__container .option .option__atc {
+    align-self: flex-end;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .build-your-own-bundle .custom-bundle .options-container .options .option__container .option .option__atc .atc button {
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    color: #ffffff;
+    margin-bottom: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    margin: 0 auto;
+    font-size: 30px;
+    background-color: #00BFE3;
+    border-color: #00BFE3;
+    border: 0;
+    cursor: pointer;
+  }
+  .build-your-own-bundle .custom-bundle .options-container .options .option__container .option .option__atc .qty {
+    display: none;
+  }
+  @media screen and (max-width: 420px) {
+    .build-your-own-bundle .custom-bundle .options-container .options .option__container .option {
+      padding-top: 210px;
+      min-height: 380px;
+    }
+  }
+  @media screen and (max-width: 413px) {
+    .build-your-own-bundle .custom-bundle .options-container .options .option__container .option {
+      padding-top: 110%;
+      min-height: 320px;
+    }
+  }
+  .build-your-own-bundle .custom-bundle .options-container .options .option__container .is-active {
+    box-shadow: 0 1px 1px 0 #00a31b;
+    border: 1px solid #00a31b;
+  }
+  .build-your-own-bundle .custom-bundle .options-container .options .option__container .is-active .option__atc .atc {
+    display: none;
+  }
+  .build-your-own-bundle .custom-bundle .options-container .options .option__container .is-active .option__atc .qty {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .build-your-own-bundle .custom-bundle .options-container .options .option__container .is-active .option__atc .qty button {
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    padding: 0px;
+    margin: 0px;
+    line-height: 21px;
+    font-size: 21px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 2px;
+    background-color: #f7f7f7;
+    color: #444444;
+  }
+  .build-your-own-bundle .custom-bundle .options-container .options .option__container .is-active .option__atc .qty input {
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    color: #ffffff;
+    margin-bottom: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    font-size: 17px;
+    font-weight: bold;
+    background-color: #00bfe3;
+    border: 0px;
+    text-align: center;
+  }
+  @media screen and (max-width: 490px) {
+    .build-your-own-bundle .custom-bundle .options-container .options .option__container {
+      padding: 0 12px 10px;
+      max-width: 205px;
+      margin-bottom: 10px;
+    }
+  }
+  @media screen and (max-width: 429px) {
+    .build-your-own-bundle .custom-bundle .options-container .options .option__container {
+      max-width: 50%;
+    }
+  }
+  @media screen and (max-width: 990px) {
+    .build-your-own-bundle .custom-bundle .options-container .options {
+      justify-content: center;
+    }
+  }
+  @media screen and (max-width: 990px) {
+    .build-your-own-bundle .custom-bundle .options-container {
+      width: 100%;
+      z-index: 10;
+      order: 2;
+      margin-top: 30px;
+    }
+  }
+  @media screen and (max-width: 490px) {
+    .build-your-own-bundle .custom-bundle .options-container {
+      padding: 0 10px;
+    }
+  }
+  .build-your-own-bundle .custom-bundle .contents {
+    order: 2;
+    width: 375px;
+    flex-basis: 375px;
+    position: relative;
+  }
+  .build-your-own-bundle .custom-bundle .contents .contents-inner {
+    width: 375px;
+    border-radius: 6px;
+    position: sticky;
+    top: 140px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+  }
+  .build-your-own-bundle .custom-bundle .contents .contents-inner .header {
+    /*     padding: 40px 30px;
+    min-height: 168px; */
+    height: auto;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+  }
+  .build-your-own-bundle .custom-bundle .contents .contents-inner .header h5 {
+    color: #fff;
+    line-height: inherit;
+/*     margin-bottom: 0px; */
+    font-weight: bold !important;
+    font-size: 14px;
+  }
+  .build-your-own-bundle .custom-bundle .contents .contents-inner .header h1 {
+    color: #fff;
+    /*     font-size: 2em !important; */
+    text-transform: uppercase;
+  }
+  .build-your-own-bundle .custom-bundle .contents .contents-inner .cta-wrapper button.bundle-atc.disabled {
+    cursor: auto;
+    pointer-events: none;
+    font-size: 18px;
+  }
+  .build-your-own-bundle .custom-bundle .contents .contents-inner .cta-wrapper button.bundle-atc:not(.disabled){
+    background: rgb(18, 18, 18);
+    color: #fff;
+    border-color: rgb(18, 18, 18);  
+  }
+  .build-your-own-bundle .custom-bundle .contents .contents-inner .cta-wrapper button.bundle-atc {
+    pointer-events: all;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  @media screen and (max-width: 990px) {
+    .build-your-own-bundle .custom-bundle .contents .contents-inner .header{
+      background-color: #fff;
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      padding: 35px 0 39px;
+    }
+    .build-your-own-bundle .custom-bundle .contents .contents-inner .header h5{
+      display: none;
+    }
+    .build-your-own-bundle .custom-bundle .contents .contents-inner .header h1{
+      color: #070707;
+      font-size: 25px;
+      text-transform: uppercase;
+      font-weight: bold;
+      text-align: center;
+      margin: 0 0 12px;
+      padding: 0;
+    }
+    body .build-your-own-bundle .custom-bundle .contents .contents-inner .header .pricing{
+      text-align: center;
+      width: 100%;
+      display: inline-block;
+      color: #070707;
+      font-size: 18px;
+    }
+    .build-your-own-bundle .custom-bundle .contents .contents-inner .header h1 {
+      /*       font-size: 1.5em !important; */
+    }
+  }
+  .build-your-own-bundle .custom-bundle .contents .contents-inner .header .pricing {
+    font-size: 15px;
+  }
+  .build-your-own-bundle .custom-bundle .contents .contents-inner .header .pricing span {
+    margin: 0 5px;
+  }
+  .build-your-own-bundle .custom-bundle .contents .contents-inner .header .pricing .price-original {
+    text-decoration: line-through;
+  }
+  .build-your-own-bundle .custom-bundle .contents .contents-inner .header .pricing .price-new {
+    font-weight: bold;
+  }
+  @media screen and (max-width: 420px) {
+    .build-your-own-bundle .custom-bundle .contents .contents-inner .header {
+      padding: 12px;
+      min-height: auto;
+    }
+  }
+  .build-your-own-bundle .custom-bundle .contents .contents-inner .item-wrapper {
+    width: 100%;
+    overflow-x: scroll;
+    position: relative;
+  }
+  .build-your-own-bundle .custom-bundle .contents .contents-inner .items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    list-style: none;
+    padding: 25px 22px;
+    /*     border-bottom: 1px solid #e5e5e5; */
+    margin-bottom: 0px;
+    position: relative;
+  }
+  .build-your-own-bundle .custom-bundle .contents .contents-inner .items li {
+    flex-basis: 33.3%;
+    /* padding: 10px; */
+    text-align: center;
+  }
+  .build-your-own-bundle .custom-bundle .contents .contents-inner .items li .product {
+    width: 104px;
+    height: 104px;
+    border: 2px dashed #e6e9eb;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .build-your-own-bundle .custom-bundle .contents .contents-inner .items li .title {
+    font-size: 16px;
+    line-height: normal;
+    letter-spacing: 0.32px;
+    padding: 5px 0;
+    color: #070707;
+    margin: 0.5rem;
+  }
+  .p-price{
+    font-size: 18px;
+    text-align: center;
+    width: 100%;
+    margin: 10px 0 10px;
+    font-weight: bold;
+    color: #00a31b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+/*   .sale-p-price{
+    text-decoration: line-through;
+    font-size: 15px;
+    color: #000;
+    font-weight: normal;
+  } */
+  .orginal-p-price{
+    
+  }
+  @media screen and (max-width: 990px) {
+    .build-your-own-bundle .custom-bundle .contents .contents-inner .items li {
+      flex-basis: 120px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 0 10px;
+    }
+  }
+  @media screen and (max-width: 420px) {
+    .build-your-own-bundle .custom-bundle .contents .contents-inner .items li {
+      margin: 0px;
+    }
+  }
+  @media screen and (max-width: 990px) {
+    .build-your-own-bundle .custom-bundle .contents .contents-inner .items {
+      justify-content: flex-start;
+      flex-wrap: nowrap;
+      padding: 10px 10px;
+      /*       width: 1030px; */
+      margin: 0 auto;
+      border-bottom: 0px;
+    }
+  }
+  .build-your-own-bundle .custom-bundle .contents .contents-inner .selected-items {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    top: 0px;
+    left: 0px;
+    margin: 0px;
+    justify-content: flex-start;
+    list-style: none;
+    padding: 25px 22px;
+    margin-bottom: 0px;
+  }
+  .build-your-own-bundle .custom-bundle .contents .contents-inner .selected-items li {
+    flex-basis: 33.3%;
+    padding: 7px;
+    text-align: center;
+    background-color: #ffffff;
+    position: relative;
+  }
+  .build-your-own-bundle .custom-bundle .contents .contents-inner .selected-items li .product {
+    width: 90px;
+    height: 100px;
+    border: 1px solid #000000;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin: 0 auto;
+  }
+  .build-your-own-bundle .custom-bundle .contents .contents-inner .selected-items li .product img {
+    width: 100%;
+  }
+  .build-your-own-bundle .custom-bundle .contents .contents-inner .selected-items li .title {
+    font-size: 12px;
+    line-height: 16px;
+    padding: 5px 0;
+    color: black;
+    margin:0;
+  }
+  .build-your-own-bundle .custom-bundle .contents .contents-inner .selected-items li .remove-item {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #000000;
+    border-radius: 50%;
+    padding: 0px;
+    color: #ffffff;
+    font-weight: bold;
+    width: 21px;
+    height: 21px;
+    font-size: 13px;
+    line-height: 13px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border-color: transparent;
+    cursor: pointer;
+  }
+  @media screen and (max-width: 990px) {
+    .build-your-own-bundle .custom-bundle .contents .contents-inner .selected-items li {
+      /*       flex-basis: 112px; */
+      margin: 0 10px;
+    }
+  }
+  @media screen and (max-width: 420px) {
+    .build-your-own-bundle .custom-bundle .contents .contents-inner .selected-items li {
+      margin: 0px;
+      max-width: 360px;
+    }
+  }
+  @media screen and (max-width: 990px) {
+    .build-your-own-bundle .custom-bundle .contents .contents-inner .selected-items {
+      justify-content: flex-start;
+      flex-wrap: nowrap;
+      /*       width: 1030px; */
+      padding: 2px 10px;
+      top: 0px;
+      margin: 0 auto;
+      right: 0;
+    }
+  }
+  .build-your-own-bundle .custom-bundle .contents .contents-inner .fix-bucket {
+    position: fixed;
+    top: 56px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    z-index: 999;
+  }
+  .build-your-own-bundle .custom-bundle .contents .contents-inner .cta-wrapper {
+    padding: 20px;
+    border-top: 1px solid #e5e5e5;
+  }
+  .build-your-own-bundle .custom-bundle .contents .contents-inner .cta-wrapper button {
+    width: 100%;
+    margin-bottom: 0px;
+    border-radius: 6px;
+    color: #9ca0a6;
+    background-color: #e6e9eb;
+    border-color: #e6e9eb;
+    box-shadow: none;
+    font-weight: bold;
+    padding: 20px;
+    cursor: pointer;
+  }
+  .build-your-own-bundle .custom-bundle .contents .contents-inner .cta-wrapper .ready-to-go {
+    background-color: #00bfe3;
+    color: #ffffff;
+  }
+  @media screen and (max-width: 990px) {
+    .build-your-own-bundle .custom-bundle .contents .contents-inner .cta-wrapper {
+      position: fixed;
+      bottom: 0px;
+      width: 100%;
+      z-index: 99;
+      background-color: #fbfbfb;
+    }
+  }
+  @media screen and (max-width: 990px) {
+    .build-your-own-bundle .custom-bundle .contents .contents-inner {
+      width: 100%;
+      border-radius: 0px;
+      position: relative;
+      background-color: transparent;
+      box-shadow: none;
+      overflow: auto;
+      height: 100%;
+      top: 0px;
+    }
+  }
+  @media screen and (max-width: 990px) {
+    .build-your-own-bundle .custom-bundle .contents {
+      position: sticky;
+      top: 0px;
+      bottom: auto;
+      left: 0;
+      width: 100%;
+      order: 1;
+      flex-basis: 100%;
+      background-color: #ffffff;
+      z-index: 99;
+      border-bottom: 1px solid #e5e5e5;
+    }
+  }
+  @media screen and (max-width: 769px) {
+    .build-your-own-bundle .custom-bundle .contents {
+      top: 0px;
+    }
+  }
+  @media screen and (max-width: 749px) {
+    .build-your-own-bundle .custom-bundle .contents {
+      top: -125px;
+    }
+    .build-your-own-bundle .custom-bundle .contents .contents-inner .item-wrapper {
+      height: 200px;
+    }
+  }
+  @media screen and (max-width: 420px) {
+    .build-your-own-bundle .custom-bundle .contents {
+      top: -10px;
+    }
+  }
+  @media screen and (max-width: 990px) {
+    .build-your-own-bundle .custom-bundle {
+      flex-wrap: wrap;
+    }
+    build-your-own-bundle .custom-bundle .contents {
+      top: 0px;
+    }
+  }
+  @media screen and (max-width: 990px) {
+    .build-your-own-bundle {
+      padding: 0px;
+    }
+  }
+  /* Banner css  */
+  .banner {
+    display: inline-block;
+    width: 100%;
+    background: #000;
+    text-align: center;
+    color: #fff;
+    margin: 0;
+    padding: 170px 15px;
+  }
+  .banner h2{
+    color: #fff;
+    font-size: 35px;
+    font-weight: 600;
+    margin: 0 0 12px;
+  }
+  .banner p{
+    font-size: 20px;
+    color: #fff;
+    margin: 0;
+  }
+  @media screen and (max-width: 767px){
+    .banner {
+      padding: 68px 50px 353px;
+    }
+    .banner p{
+      padding: 0 20px;
+    }
+  }
+  .option__atc select {
+    width: 100%;
+    padding: 5px 10px;
+    display: inline-block;
+    margin: 0 0 5px;
+    border: 1px solid #666666;
+    color: #666666;
+    font-size: 14px;
+  }
+  .option__atc a.btn {
+    background: #0D0D0D;
+    color: #fff;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.25px;
+    width: 100%;
+    display: inline-block;
+    padding: 2px 0;
+    margin-top: 10px;
+    box-shadow: 0 4px #a9a8ab;
+  }
+  .option__atc a.btn:active {
+    box-shadow: 0 4px #666;
+    transform: translateY(4px);
+  }
+</style>
+
+<div class="banner">
+  <div class="banner-contant">
+    <h2>{{ section.settings.banner_header }}</h2>
+    <p>{{ section.settings.banner_sub_header }}</p>
+  </div>
+</div>
+{{ 'option_selection.js' | shopify_asset_url | script_tag }}
+<div id="build-custom-bundle-app" class="build-your-own-bundle">
+  <div class="custom-bundle"> 
+    <div class="options-container">
+      <h1>{{ section.settings.product__header }}</h1>
+      <div class="options">
+        {% for product in section.settings.collection_products.products %}
+        <div class="option__container" data-variantId= "{{product.selected_or_first_available_variant.id}}">
+          <div  class="option" data-id="index_{{forloop.index}}">
+            <img src="{{ product.featured_image | img_url:'200x' }}" id="addon_pro_featured_img_{{ product.id }}">
+            <h4>{{ product.title }}</h4>
+            <h5 class="p-price">
+<!--               <span class="">{{ product.compare_at_price | money }}</span> -->
+              <span class="orginal-p-price" id="product_price_{{ product.id }}">{{ product.price | money }}</span>
+<!--               <span class="sale-p-price" id="discounted_p_price_{{ product.id }}"></span> -->
+            </h5>
+            <div class="option__atc" data-id="index_{{forloop.index}}" data-productId= "{{product.id}}" data-handle= "{{product.handle}}">
+              {% for product_option in product.options_with_values %}
+              	<!--label>
+                  {{ product_option.name }}
+                </label-->
+             
+                  <select class="select_option {% if product_option.name == "Size"%} Size_otion {% endif %}" data-label= "{{ product_option.name }}" id="productSelectAddon_{{product.id}}" data-index="option{{forloop.index0}}" style="display: none;">                                    
+                    {% for value in product_option.values %}
+                    <option {% if product_option.selected_value == value %}selected{% endif %}  value="{{ value }}">
+                      {{ value }}
+                    </option>
+                  {% endfor %}
+                </select>
+              
+               {% comment %}
+              {% endcomment %}
+              {% endfor %}
+              <a href="#" id="productSelectcartbtn_{{ product.id }}" class="btn addToBundle" data-id="index_{{forloop.index}}" data-handle= "{{product.handle}}" data-price="{{product.selected_or_first_available_variant.price}}" data-productid="{{product.selected_or_first_available_variant.id}}">ADD TO BUNDLE</a>
+            </div>
+          </div>
+        </div> 
+        
+        <script>    
+          	$('select[data-option="option1"]:first option:first').attr("selected",true)          
+            setTimeout(function() {
+              $(".single-option-selector option[value='Default Title']").parent().hide();
+            }, 1000);
+          	var selectCallback_addon_{{ product.id }} = function(variantaddon, selector) {
+				var variantresult = variantaddon.options;
+				var optionlenght = selector.product.options.length;
+				var product_option = selector.product.options;
+                            
+                if(variantaddon.featured_image){
+					var addvarsrc = variantaddon.featured_image.src;
+					$("#addon_pro_featured_img_{{ product.id }}").attr('src',addvarsrc);
+                }
+				if (variantaddon && variantaddon.available == true) {
+				  $("#productSelectcartbtn_{{ product.id }}").text('Add to Bundle').removeClass('disabled');
+				  var var_addon_id= variantaddon.id;
+                  $("#productSelectcartbtn_{{ product.id }}").attr('data-productid',var_addon_id);
+				  var var_price= variantaddon.price;
+                  $("#productSelectcartbtn_{{ product.id }}").attr('data-price',var_price);
+                    
+                  var str=var_price.toString();
+                  var resStr=str.substring(0,str.length-2)+"."+str.substring(str.length-2);
+                  $("#product_price_{{ product.id }}").text("$"+resStr);
+                    
+                  var valueInString = resStr;
+                  var num = parseFloat(valueInString);
+                  var val = num - (num * .20);
+                  $("#discounted_p_price_{{ product.id }}").text(val.toFixed(2));
+                } else {
+                    
+                  var var_price= variantaddon.price;
+                  var str=var_price.toString();
+                  var resStr=str.substring(0,str.length-2)+"."+str.substring(str.length-2);
+                  $("#product_price_{{ product.id }}").text("$"+resStr);
+                    
+                  var valueInString = resStr;
+                  var num = parseFloat(valueInString);
+                  var val = num - (num * .20);
+                  $("#discounted_p_price_{{ product.id }}").text(val.toFixed(2));
+                    
+                  $("#productSelectcartbtn_{{ product.id }}").text('Sold Out').addClass('disabled','disabled');
+                }
+              
+            };
+            new Shopify.OptionSelectors("productSelectAddon_{{product.id}}", { product: {{ product | json }},
+							onVariantSelected: selectCallback_addon_{{ product.id }} ,
+							enableHistoryState: false});
+        </script>
+        
+        {% for product_option in product.options_with_values %}
+              <script>
+                  var aaa = '{{product.id}}';
+                  var indexing = '{{forloop.index0}}';
+                  var get_val = $('#productSelectAddon_'+aaa+'[data-index=option'+indexing+']').find(':selected').val();
+                  $('#productSelectAddon_{{product.id}}-option-'+indexing+' option[value="'+get_val+'"]').attr("selected","selected");
+                  $('#productSelectAddon_{{product.id}}-option-'+indexing).val(get_val).trigger('change');
+              </script>
+        {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+    <div class="contents">
+      <div class="contents-inner">
+        <div class="header"> 
+          <h5>Products</h5> 
+          <h1 class="h3">build your bundle</h1>
+          <div class="pricing"><span class="price-original">$0.00</span> <span class="price-new">$0.00</span></div>
+        </div>
+        <div class="item-wrapper">
+          <input type="hidden" id="totalItemsAdded" value="0" />
+          <ul class="items">
+            <div class="line"></div>
+            <li data-item="1">
+              <div class="product">1</div>
+              <div class="title">Product 1</div>
+            </li>
+            <li data-item="2">
+              <div class="product">2</div>
+              <div class="title">Product 2</div>
+            </li>
+            <li data-item="3">
+              <div class="product">3</div>
+              <div class="title">Product 3</div>
+            </li>
+          </ul>
+        </div>
+        <div class="cta-wrapper"><button class="bundle-atc disabled">Create Bundle</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  window.addEventListener('DOMContentLoaded', function(){
+  	(function($){
+      
+      function numbersLogic(getItems, action){
+        if(getItems > 3 ){ 
+          var myNum = getItems 
+          
+          if(myNum > 0 && Number.isInteger(myNum)){
+          $('.bundle-atc').removeClass('disabled');
+          var total_price = 0;
+          $('.build-your-own-bundle .custom-bundle .contents .contents-inner .selected-items .product').each(function () {				
+              total_price = total_price + $(this).data('price');
+          });
+          var discounted_price = 20*total_price/100;
+          var final_price = total_price - discounted_price;
+          final_price = final_price/100;
+          
+          var original_price = total_price/100;
+          original_price = original_price.toFixed(2);
+          $('.build-your-own-bundle .custom-bundle .contents .contents-inner .header .pricing .price-original').text('$'+original_price);
+          $('.build-your-own-bundle .custom-bundle .contents .contents-inner .header .pricing .price-new').text('$'+final_price.toFixed(2));
+        }else{
+          $('.bundle-atc').addClass('disabled');
+          if(getItems < 3){
+          	$('.build-your-own-bundle .custom-bundle .contents .contents-inner .header .pricing .price-original').text('$0.00');
+          	$('.build-your-own-bundle .custom-bundle .contents .contents-inner .header .pricing .price-new').text('$0.00');
+          }     
+        }
+       }
+        else{
+          var myNum = getItems / 3;
+        
+        if(myNum > 0 && Number.isInteger(myNum)){
+          $('.bundle-atc').removeClass('disabled');
+          var total_price = 0;
+          $('.build-your-own-bundle .custom-bundle .contents .contents-inner .selected-items .product').each(function () {				
+              total_price = total_price + $(this).data('price');
+          });
+          var discounted_price = 15*total_price/100;
+          var final_price = total_price - discounted_price;
+          final_price = final_price/100;
+          
+          var original_price = total_price/100;
+          original_price = original_price.toFixed(2);
+          $('.build-your-own-bundle .custom-bundle .contents .contents-inner .header .pricing .price-original').text('$'+original_price);
+          $('.build-your-own-bundle .custom-bundle .contents .contents-inner .header .pricing .price-new').text('$'+final_price.toFixed(2));
+        }else{
+          $('.bundle-atc').addClass('disabled');
+          if(getItems < 3){
+          	$('.build-your-own-bundle .custom-bundle .contents .contents-inner .header .pricing .price-original').text('$0.00');
+          	$('.build-your-own-bundle .custom-bundle .contents .contents-inner .header .pricing .price-new').text('$0.00');
+          }     
+        }
+       }
+      }
+      
+      function addToBundle(data, id){
+        var title, image, price;
+        title = $('.build-your-own-bundle .custom-bundle .options-container .options .option__container .option[data-id='+data+'] h4').text();
+        image = $('.build-your-own-bundle .custom-bundle .options-container .options .option__container .option[data-id='+data+'] img').attr('src');
+        price = $('.build-your-own-bundle .custom-bundle .options-container .options .option__container .option[data-id='+data+'] .btn.addToBundle').data('price');
+        
+        var getItems = parseInt(document.getElementById('totalItemsAdded').value, 10);
+        getItems = isNaN(getItems) ? 0 : getItems;
+        getItems++;
+        document.getElementById('totalItemsAdded').value = getItems;
+        
+        if($('.selected-items').is(':visible')){
+          $('.build-your-own-bundle .custom-bundle .contents .contents-inner .item-wrapper .selected-items').append('<li class="append_'+getItems+'"><div data-price="'+price+'" data-id="'+id+'" data-bucket-id="0" class="product"><img src="'+image+'"></div> <div class="title">'+title+'</div> <button class="remove-item" data-index="'+getItems+'" data-id="'+id+'">x</button></li>');      
+        }else{
+          $('.build-your-own-bundle .custom-bundle .contents .contents-inner .item-wrapper').append('<ul class="selected-items"><li class="append_'+getItems+'"><div data-price="'+price+'" data-id="'+id+'" data-bucket-id="0" class="product"><img src="'+image+'"></div> <div class="title">'+title+'</div> <button class="remove-item" data-index="'+getItems+'" data-id="'+id+'">x</button></li></ul>');
+        }
+        var action= 'add';
+        numbersLogic(getItems, action);
+      }
+      
+      $('.addToBundle').on('click', function(e){
+      	e.preventDefault();
+		var index = $(this).data('id');
+		var add_id = $(this).data('productid');
+		var url = $(this).data('handle');
+        
+        $('.option__container[data-variantid='+add_id+'] .option').addClass('is-active');
+        addToBundle(index , add_id);
+      });
+      
+      $(document).on('click', 'button.remove-item', function(e){
+      	e.preventDefault();
+		var id = $(this).data('id');
+		var index = $(this).data('index');
+        $('.build-your-own-bundle .custom-bundle .contents .contents-inner .selected-items li.append_'+index).remove();
+        
+        var getItems = parseInt(document.getElementById('totalItemsAdded').value, 10);
+        getItems = isNaN(getItems) ? 0 : getItems;
+        getItems--;
+        document.getElementById('totalItemsAdded').value = getItems;
+        
+        var action= 'remove';
+        numbersLogic(getItems, action);
+      });
+      
+      $(document).on('click', 'button.bundle-atc', function(e){
+      	e.preventDefault();
+        var all_items = [];
+        $('.build-your-own-bundle .custom-bundle .contents .contents-inner .selected-items .product').each(function () {
+          var idd = $(this).data('id');
+          all_items.push(idd);
+        });
+        
+        var prop = 'Bundle Product';
+        
+        var product_data = all_items.map(variantId => {
+          return {quantity: 1, id: variantId, properties: {'Type':'bundleproduct'}}
+        })
+
+        var data = {
+          items: product_data
+        }
+
+        fetch('/cart/add.js', {
+          body: JSON.stringify(data),
+          credentials: 'same-origin',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With':'xmlhttprequest'
+          },
+          method: 'POST'
+        }).then((response) => {
+          return response.json();
+        }).then((json) => {
+          console.log('products', json);
+          setTimeout(function(){
+          	$('a#cart-icon-bubble').trigger('click');
+          },200);
+        }).catch((err) => {
+          console.error(err)
+        });
+      });
+      
+  	})(jQuery);
+  });
+</script>
+
+{% schema %}
+{
+	"name": "Bundle App Section",
+	"settings": [{
+		"type":"header",
+		"content":"Banner"
+	},
+	{
+		"type":"text",
+		"id":"banner_header",
+		"label":"Heading"
+	}
+	,
+	{
+		"type":"text",
+		"id":"banner_sub_header",
+		"label":"Sub Heading"
+	},
+
+	{
+		"type":"header",
+		"content":"Product Section"
+	},
+	{
+		"type":"text",
+		"id":"product__header",
+		"label":"Heading"
+	},
+	{
+		"type":"collection",
+		"id":"collection_products",
+		"label":"Select Collection"
+	}
+]
+}
+{% endschema %}
