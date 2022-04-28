@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "build-own-bundle",
+      "settings": {
+        "banner_header": "Build Your Bundle and & Save",
+        "banner_sub_header": "Add 3 Products to Save 15%, Add 4 or More to Save 20%",
+        "product__header": "",
+        "collection_products": "bestsellers2"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
