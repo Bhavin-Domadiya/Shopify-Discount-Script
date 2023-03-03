@@ -1,4 +1,4 @@
-# Shopify-discount-script
+# Shopify-Discount-Script
 Using shopify script editor, Tired discount offer for shopify plus
 
 Step 1 : Install shopify script editor app https://apps.shopify.com/script-editor
